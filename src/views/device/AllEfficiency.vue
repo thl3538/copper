@@ -39,10 +39,10 @@
     </Row>
     <Divider>最近7日效率</Divider>
     <Row type="flex" justify="space-around" >
-      <Col span="7" style="marginTop: 40px" class="active">
+      <Col span="7" style="marginTop: 20px" class="active">
         <ve-pie :data="chartData" :settings="chartSettings"></ve-pie> 
       </Col>
-      <Col span="15" class="active">
+      <Col span="15"  style="marginTop: 20px" class="active">
           <ve-line :data="chartData" :settings="chartSettings"></ve-line>
       </Col>
     </Row>
@@ -105,5 +105,6 @@ export default {
 }
 .active{
   box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;
+  border-radius: 5px;
 }
 </style>>

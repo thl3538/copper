@@ -86,7 +86,7 @@ export default {
           this.$store
             .dispatch("user/handleLogin", this.formCustom)
             .then(res => {
-              this.$Message.success(res);
+              this.$Message.success("登录成功");
               this.$router.push({ path: "/home" });
             })
             .catch(err => {

@@ -35,14 +35,10 @@ export default {
          * @param {context} param0
          * @param {Int} deviceId 设备Id
          */
-        getAverEfficiency({
-            commit
-        }, deviceId) {
+        getAverEfficiency({ commit }, deviceId) {
             return new Promise((resolve, reject) => {
                 axios.get(`/api/data/aver/${deviceId}`)
-                    .then(({
-                        data
-                    }) => {
+                    .then(({data}) => {
                         if (data.code === 200) {
                             commit("getAverEff", data.data)
                         } else {
@@ -59,14 +55,10 @@ export default {
          * @param {context} param0
          * @param {Int} deviceId 设备Id
          */
-        getRealEfficiency({
-            commit
-        }, deviceId) {
+        getRealEfficiency({commit}, deviceId) {
             return new Promise((resovle, reject) => {
                 axios.get(`/api/data/real/${deviceId}`)
-                    .then(({
-                        data
-                    }) => {
+                    .then(({data}) => {
                         if (data.code === 200) {
                             commit("realEff", data.data)
                         }

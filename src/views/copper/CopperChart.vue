@@ -103,13 +103,14 @@ export default {
     classData() {
       let lis = this.$store.state.copperChart.classChartData;
       return {
-        columns: ["日期", "早班长度", "晚班长度"],
+        columns: ["日期", "早班长度", "晚班长度","总长度"],
         rows: lis
           .map(e => {
             return {
               日期: e.date,
               早班长度: e.outputOfMorning,
-              晚班长度: e.outputOfNight
+              晚班长度: e.outputOfNight,
+              总长度: e.outputOfDay
             }
           }) 
       };
@@ -117,13 +118,14 @@ export default {
     classWeightData() {
       let lis = this.$store.state.copperChart.classChartData;
       return {
-        columns: ["日期", "A班产量", "B班产量"],
+        columns: ["日期", "A班产量", "B班产量","总产量"],
         rows: lis
           .map(e => {
             return {
               日期: e.date,
               A班产量: e.copperWeightOfMorning,
-              B班产量: e.copperWeightOfNight
+              B班产量: e.copperWeightOfNight,
+              总产量: e.copperWeight
             }
           }) 
       };

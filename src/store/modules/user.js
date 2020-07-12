@@ -74,6 +74,7 @@ export default {
           .then(({ data }) => {
             if (data.code === 200) {
               commit("setUserInfo", data.data);
+              // commit("setIdentity", data.msg);
               resolve(data.msg);
             } else {
               reject(data.msg);

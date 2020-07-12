@@ -14,25 +14,27 @@
     </i-select>
     <!-- 实时效率 -->
     <Divider>实时效率</Divider>
-    <Row type="flex" justify="space-between">
+    <Row type="flex" justify="space-around">
       <Col span="10">
         <Card>
           <ve-line :data="realChartData"></ve-line>
         </Card>
       </Col>
       <Col span="10">
-        <Table
+        <Card>
+          <Table
           border
           :columns="columns"
           :data="realEff"
-          style="{marginTop: '60px,height: '400px'}"
+          style="{marginTop: '60px,height: '350px'}"
         />
+        </Card>
       </Col>
     </Row>
     <Divider>最近7天效率</Divider>
-    <Row>
+    <Row class="active"> 
       <Col span="24">
-        <ve-line :data="chartData" :settings="chartSettings"></ve-line>
+        <ve-line :data="dayEfficiency" ></ve-line>
       </Col>
     </Row>
   </div>
@@ -88,6 +90,7 @@ export default {
       this.deviceId = this.devices[0].deviceId;
       this.$store.dispatch("singleEfficiency/getRealEfficiency", this.deviceId);
       this.$store.dispatch("singleEfficiency/getAverEfficiency", this.deviceId);
+      this.$store.dispatch("copperChart/getClassChart", this.deviceId);
     });
   },
   computed: {
@@ -114,6 +117,20 @@ export default {
           };
         })
       };
+    },
+    dayEfficiency() {
+      let lis = this.$store.state.copperChart.classEfficiency;
+      return {
+        columns: ["生成时间","白班效率","晚班效率","总效率"],
+        rows: lis.map(e => {
+          return {
+            生成时间: e.date,
+            白班效率: e.outputOfMorning,
+            晚班效率: e.outputOfNight,
+            总效率: e.outputOfDay
+          }
+        })
+      }
     }
   },
   methods: {
@@ -132,5 +149,6 @@ export default {
 }
 .active{
   box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;
+  border-radius: 5px;
 }
 </style>

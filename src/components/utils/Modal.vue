@@ -8,12 +8,12 @@
       <td>{{modal.firstRow[1]}}</td>
     </tr>
     <tr>
-      <td>{{modal.firstRow[0]}}</td>
-      <td>{{modal.firstRow[1]}}</td>
+      <td>{{modal.secondRow[0]}}</td>
+      <td>{{modal.secondRow[1]}}</td>
     </tr>
     <tr>
-      <td>{{modal.firstRow[0]}}</td>
-      <td>{{modal.firstRow[1]}}</td>
+      <td>{{modal.thirdRow[0]}}</td>
+      <td>{{modal.thirdRow[1]}}</td>
     </tr>
   </table>
 </template>

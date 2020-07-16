@@ -60,7 +60,6 @@ export default {
                 .get(`/api/data/week?deviceId=${deviceId}`)
                 .then(({data}) => {
                     if(data.code === 200){
-                        console.log(data);
                         commit("getClassChartData", data.data);
                         commit("getClassEfficiency",data.data);
                         resolve(data.msg);

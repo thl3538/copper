@@ -25,8 +25,8 @@ export default [
         next({ name: "login" });
       }
     },
-    // 默认展示母线页面
-    redirect: "/home/copper",
+    // 默认展示首页页面
+    redirect: "/home/index",
     children: [
       // 信息查询展示页面
       {
@@ -39,6 +39,12 @@ export default [
         path: "export",
         name: "export",
         component: () => import("../views/excel/Export.vue")
+      },
+      // 首页页面
+      {
+        path: "index",
+        name: "index",
+        component: () => import("../views/copper/Index.vue")
       },
       // 铜丝数据页面
       {

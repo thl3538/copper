@@ -14,7 +14,8 @@ import allEfficiency from './modules/allEfficiency';
 import singleEfficiency from './modules/singleEfficiency';
 import maintenance from './modules/maintenance';
 import maintenanceDet from './modules/maintenanceDet';
-
+import warn from './modules/warn'
+import timeCard from './modules/timeCard'
 
 Vue.use(Vuex);
 
@@ -39,6 +40,8 @@ export default new Vuex.Store({
     allEfficiency,
     singleEfficiency,
     maintenance,
-    maintenanceDet
+    maintenanceDet,
+    warn,
+    timeCard
   }
 });

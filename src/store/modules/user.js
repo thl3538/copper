@@ -4,7 +4,8 @@ export default {
   namespaced: true,
   state: {
     token: getToken(), //用户token
-    userInfo: {} // 用户信息
+    userInfo: {}, // 用户信息
+    identity: "" //用户身份
   },
   mutations: {
     /**
@@ -26,7 +27,13 @@ export default {
     removeToken(state) {
       state.token = null;
       removeToken();
-    }
+    },
+    /**
+     * 设置用户身份
+    */
+   setIdentity(state,identity){  
+    state.identity = identity;
+   }
   },
   actions: {
     /**
@@ -40,8 +47,10 @@ export default {
           .post("/api/account", account)
           .then(({ data }) => {
             if (data.code === 200) {
+              console.log(data);
               commit("setToken", data.data.userToken);
               commit("conf/update", "1-1", { root: true });
+              commit("setIdentity", data.msg);
               resolve(data.msg);
             } else {
               reject(data.msg);
@@ -74,7 +83,6 @@ export default {
           .then(({ data }) => {
             if (data.code === 200) {
               commit("setUserInfo", data.data);
-              // commit("setIdentity", data.msg);
               resolve(data.msg);
             } else {
               reject(data.msg);

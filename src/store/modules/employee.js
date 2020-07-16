@@ -113,11 +113,13 @@ export default {
      * @param {employee} employee 员工信息
      */
     updateEmployee({ dispatch }, employee) {
+      console.log(employee);
       return new Promise((resolve, reject) => {
         axios
           .put(`/api/employee`, employee)
           .then(({ data }) => {
             if (data.code === 200) {
+              console.log(data);
               dispatch("getAllEmployee", 0);
               resolve(data.msg);
             } else {
@@ -139,6 +141,7 @@ export default {
       return new Promise((resolve,reject) => {
         axios.post("/api/employee",employee)
         .then(({data}) => {
+          console.log(data);
           if(data.code === 200) {
             resolve(data.msg);
           }else{

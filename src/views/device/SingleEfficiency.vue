@@ -48,17 +48,6 @@ export default {
       page: 0,
       total: 0,
       deviceId: "",
-      chartData: {
-        columns: ["日期", "总效率", "白班效率", "晚班效率"],
-        rows: [
-          { 日期: "2018-01-01", 总效率: 1393, 白班效率: 1093, 晚班效率: 0.32 },
-          { 日期: "2018-01-02", 总效率: 3530, 白班效率: 3230, 晚班效率: 0.26 },
-          { 日期: "2018-01-03", 总效率: 2923, 白班效率: 2623, 晚班效率: 0.76 },
-          { 日期: "2018-01-05", 总效率: 1723, 白班效率: 1423, 晚班效率: 0.49 },
-          { 日期: "2018-01-10", 总效率: 3792, 白班效率: 3492, 晚班效率: 0.323 },
-          { 日期: "2018-01-20", 总效率: 4593, 白班效率: 4293, 晚班效率: 0.78 }
-        ]
-      },
       chartSettings: {
         xAxisType: "time"
       },
@@ -110,7 +99,11 @@ export default {
       let lis = this.$store.state.singleEfficiency.realEff;
       return {
         columns: ["生成时间", "实时效率"],
-        rows: lis.map(e => {
+        rows: lis
+        .sort((a,b) => {
+          return a.createTime - b.createTime
+        })
+        .map(e => {
           return {
             生成时间: new Date(e.createTime).toLocaleString(),
             实时效率: e.efficiency
@@ -147,7 +140,7 @@ export default {
 .ivu-select {
   display: flex;
 }
-.active{
+.active {
   box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;
   border-radius: 5px;
 }

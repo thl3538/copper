@@ -36,6 +36,11 @@
         <FormItem label="手机号">
           <Input v-model="formItem.employeePhone"></Input>
         </FormItem>
+        <FormItem label="管理设备">
+          <CheckboxGroup v-for="(item,index) in devices" :key="index" v-model="editDevice">
+            <Checkbox :label="item.deviceId"></Checkbox>
+          </CheckboxGroup>
+        </FormItem>
       </Form>
     </Modal>
     <!-- 添加员工信息模态框 -->
@@ -65,6 +70,11 @@
         <FormItem label="手机号">
           <Input v-model="addForm.employeePhone"></Input>
         </FormItem>
+        <FormItem label="管理设备">
+          <CheckboxGroup v-for="(item,index) in devices" :key="index" v-model="device">
+            <Checkbox :label="item.deviceId"></Checkbox>
+          </CheckboxGroup>
+        </FormItem>
       </Form>
     </Modal>
   </div>
@@ -81,6 +91,8 @@ export default {
       page: 0,
       modal: false,
       addModal: false,
+      device: [], //添加设备的deviceId
+      editDevice: [], //修改设备的deviceId数组
       formItem: {
         employeeCard: "",
         employeeName: "",
@@ -95,7 +107,7 @@ export default {
         employeeSex: "",
         employeePhone: "",
         userName: "",
-        userPwd: ""
+        userPwd: "",
       },
       // 表格表头
       columns: [
@@ -137,6 +149,10 @@ export default {
         {
           title: "员工手机号",
           key: "employeePhone"
+        },
+        {
+          title: "管理设备Id",
+          key: "bindingDevice"
         },
         {
           title: "操作",
@@ -190,13 +206,16 @@ export default {
       list: "employee/ascByTime"
     }),
     ...mapState({
-      autoHeight: state => state.pageHeight - 160
+      autoHeight: state => state.pageHeight - 220
     }),
     size() {
       return this.$store.state.employee.pageSize;
     },
     count() {
       return this.$store.state.employee.totalEmployee;
+    },
+    devices() {
+      return this.$store.state.device.devices;
     }
   },
   beforeMount() {
@@ -272,6 +291,9 @@ export default {
      * 添加员工信息
      */
     addEmployee() {
+      let arr = this.device;
+      let Str = arr.join();
+      this.addForm.bindingDevice = Str;
       this.$store
         .dispatch("employee/addEmployee", this.addForm)
         .then(res => {
@@ -293,6 +315,11 @@ export default {
      * 修改员工信息
      */
     updateEmployee() {
+      let arr = this.editDevice;
+      let Str = arr.join();
+      this.formItem.bindingDevice = Str;
+      this.formItem.userName = "";
+      this.formItem.userPwd = "";
       this.$store
         .dispatch("employee/updateEmployee", this.formItem)
         .then(res => {

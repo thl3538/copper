@@ -21,15 +21,19 @@
         <template slot="title">
           <Icon type="ios-apps" />铜丝
         </template>
-        <MenuItem name="1-1" to="/home/copper">
+        <MenuItem name="1-1" to="/home/index">
+          <Icon type="md-analytics" />
+          <span>首页</span>
+        </MenuItem>
+        <MenuItem name="1-2" to="/home/copper">
           <Icon type="md-analytics" />
           <span>铜丝数据</span>
         </MenuItem>
-        <MenuItem name="1-2" to="/home/partcopper">
+        <MenuItem name="1-3" to="/home/partcopper">
           <Icon type="md-analytics" />
           <span>单台数据</span>
         </MenuItem>
-        <MenuItem name="1-3" to="/home/copperchart">
+        <MenuItem name="1-4" to="/home/copperchart">
           <Icon type="md-analytics" />
           <span>图表展示</span>
         </MenuItem>
@@ -79,10 +83,6 @@
         <MenuItem name="4-2" to="/home/timecard">
           <Icon type="ios-body-outline"></Icon>
           <span>员工考勤</span>
-        </MenuItem>
-        <MenuItem name="4-3" to="/home/attendence">
-          <Icon type="md-hammer" />
-          <span>考勤总览</span>
         </MenuItem>
       </Submenu>
       <Submenu name="5">

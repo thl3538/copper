@@ -8,6 +8,9 @@ export default{
             state.tags = [];
             const tags = tag.name;
             switch(tags) {
+                case "index" :
+                    state.tags.push("铜丝","首页")
+                    break; 
                 case "copper" :
                     state.tags.push("铜丝","铜丝数据")
                     break;

@@ -29,7 +29,7 @@
         <span :style="{fontWeight: 'bold'}">{{ username }}</span>
       </Tooltip>
       <Tooltip content="身份" placement="bottom">
-        <span :style="{color: '#2d8cf0', fontWeight: 'bold'}">管理员</span>
+        <span :style="{color: '#2d8cf0', fontWeight: 'bold'}">{{identity === "USER" ? "管理员" : "员工"}}</span>
       </Tooltip>
     </span>
   </div>
@@ -69,6 +69,9 @@ export default {
     },
     tags() {
       return this.$store.state.breadcrumb.tags;
+    },
+    identity() {
+      return this.$store.state.user.identity;
     }
   }
 };

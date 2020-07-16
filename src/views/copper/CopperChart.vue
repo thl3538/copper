@@ -103,14 +103,22 @@ export default {
     classData() {
       let lis = this.$store.state.copperChart.classChartData;
       return {
+<<<<<<< HEAD
         columns: ["日期", "早班长度", "晚班长度","总长度"],
+=======
+        columns: ["日期", "早班长度", "晚班长度"],
+>>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
         rows: lis
           .map(e => {
             return {
               日期: e.date,
               早班长度: e.outputOfMorning,
+<<<<<<< HEAD
               晚班长度: e.outputOfNight,
               总长度: e.outputOfDay
+=======
+              晚班长度: e.outputOfNight
+>>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
             }
           }) 
       };
@@ -118,14 +126,22 @@ export default {
     classWeightData() {
       let lis = this.$store.state.copperChart.classChartData;
       return {
+<<<<<<< HEAD
         columns: ["日期", "A班产量", "B班产量","总产量"],
+=======
+        columns: ["日期", "A班产量", "B班产量"],
+>>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
         rows: lis
           .map(e => {
             return {
               日期: e.date,
               A班产量: e.copperWeightOfMorning,
+<<<<<<< HEAD
               B班产量: e.copperWeightOfNight,
               总产量: e.copperWeight
+=======
+              B班产量: e.copperWeightOfNight
+>>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
             }
           }) 
       };

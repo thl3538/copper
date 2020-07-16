@@ -25,8 +25,13 @@ export default [
         next({ name: "login" });
       }
     },
+<<<<<<< HEAD
     // 默认展示首页页面
     redirect: "/home/index",
+=======
+    // 默认展示母线页面
+    redirect: "/home/copper",
+>>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
     children: [
       // 信息查询展示页面
       {
@@ -40,12 +45,15 @@ export default [
         name: "export",
         component: () => import("../views/excel/Export.vue")
       },
+<<<<<<< HEAD
       // 首页页面
       {
         path: "index",
         name: "index",
         component: () => import("../views/copper/Index.vue")
       },
+=======
+>>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
       // 铜丝数据页面
       {
         path: "copper",

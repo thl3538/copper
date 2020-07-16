@@ -1,14 +1,29 @@
+<<<<<<< HEAD
+=======
+/*
+ * @Author: your name
+ * @Date: 2020-06-29 18:59:13
+ * @LastEditTime: 2020-07-05 20:37:41
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \data-platform-client\src\store\modules\copperChart.js
+ */ 
+>>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
 export default {
     namespaced: true,
     state: {
       classChartData: [],
+<<<<<<< HEAD
       classEfficiency: [],
+=======
+>>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
       actChartData: []  
     },
     mutations: {
         getClassChartData(state, chartData) {
             state.classChartData = chartData;
         },
+<<<<<<< HEAD
         getClassEfficiency(state, chartData) {
             let classEfficiency = chartData.map(item => {
                 return {
@@ -24,6 +39,8 @@ export default {
         * 实际长度数据
         * @param {chartData} 
         */
+=======
+>>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
         getActChartData(state, chartData) {
             state.actChartData = chartData;
         }
@@ -61,7 +78,10 @@ export default {
                 .then(({data}) => {
                     if(data.code === 200){
                         commit("getClassChartData", data.data);
+<<<<<<< HEAD
                         commit("getClassEfficiency",data.data);
+=======
+>>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
                         resolve(data.msg);
                     }else {
                         reject(data.msg);

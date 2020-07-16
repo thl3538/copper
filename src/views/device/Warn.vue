@@ -6,7 +6,11 @@
         <div>
           <Row :style="{display: 'flex', height: '100%', justifyContent: 'space-around'}">
             <Col span="6">
+<<<<<<< HEAD
               <div :style="{display: 'flex', height: '100%', flexDirection: 'column', color: '#657180', justifyContent: 'space-around', fontWeigth: 'bold' }">
+=======
+              <div :style="{display: 'flex', height: '100%', flexDirection: 'column', color: '#657180', justifyContent: 'space-around' }">
+>>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
                 <p>
                   一般告警
                   <span>178</span>条
@@ -34,6 +38,7 @@
       </Card>
     </div>
     <Row>
+<<<<<<< HEAD
       <Col span="12" :style="{display: 'flex', alignItems: 'center'}">
       <Date-picker type="datetime" v-model="startTime" format="yyyy-MM-dd HH:mm" placeholder="选择开始时间" :style="{width: '200px', marginRight: '20px'}"></Date-picker>
       <Date-picker type="datetime" v-model="endTime" format="yyyy-MM-dd HH:mm" placeholder="选择结束时间" :style="{width: '200px', marginRight: '20px'}"></Date-picker>
@@ -66,15 +71,35 @@
 <script>
 import { createNamespacedHelpers, mapGetters } from "vuex";
 const { mapState } = createNamespacedHelpers("conf");
+=======
+      <Col span="8">
+      <Date-picker type="datetime" v-model="startTime" format="yyyy-MM-dd HH:mm" placeholder="选择开始时间" :style="{width: '200px', marginRight: '20px'}"></Date-picker>
+      <Date-picker type="datetime" v-model="endTime" format="yyyy-MM-dd HH:mm" placeholder="选择结束时间" :style="{width: '200px', marginRight: '20px'}"></Date-picker>
+        <i-button type="primary" icon="ios-search">搜索</i-button>
+      </Col>
+    </Row>
+    <Table :style="{marginTop: '20px'}" :columns="columns" :data="data1"></Table>
+  </div>
+  
+</template>
+
+<script>
+>>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
 import HandleWarn from "../../components/utils/HandleWarn";
 export default {
   name: "warn",
   data() {
+<<<<<<< HEAD
     let _that = this;
     return {
       startTime: "",
       endTime: "",
       deviceId: "",
+=======
+    return {
+      startTime: "",
+      endTime: "",
+>>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
       warn: {
         handle: "未处理",
         total: "178条"
@@ -87,6 +112,7 @@ export default {
         handle: "已处理",
         total: "0条"
       },
+<<<<<<< HEAD
       page: 0,
       total: 0,
       columns: [
@@ -95,11 +121,16 @@ export default {
           key: "deviceId"
         },
         {
+=======
+      columns: [
+        {
+>>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
           title: "设备名称",
           key: "deviceName"
         },
         {
           title: "告警名称",
+<<<<<<< HEAD
           key: "logInfo"
         },
         // {
@@ -180,6 +211,83 @@ export default {
         console.log(err);
       });
   },
+=======
+          key: "warnKey"
+        },
+        {
+          title: "告警值",
+          key: "warnValue"
+        },
+        {
+          title: "故障类型",
+          key: "warnType"
+        },
+        {
+          title: "发生时间",
+          key: "warnTime"
+        },
+        {
+          title: "处理状态",
+          key: "warnStatus"
+        }
+      ],
+      data1: [
+        {
+          deviceName: "小拉机#71",
+          warnKey: "小拉机闲置",
+          warnValue: "12小时",
+          warnTime: "2020-06-30 08:47:46",
+          warnType: "一般告警",
+          warnStatus: "未处理"
+        }
+      ],
+      cityList: [
+        {
+          value: "A筛选",
+          label: "A筛选"
+        },
+        {
+          value: "B筛选",
+          label: "B筛选"
+        },
+        {
+          value: "C筛选",
+          label: "C筛选"
+        }
+      ],
+      model10: [],
+      obj:[
+        {
+          value: "",
+          value1: ""
+        },
+        {
+          value: "",
+          value1: ""
+        },
+        {
+         value: "",
+         value1: ""
+        },
+        {
+          value: "",
+          value1: ""
+        },
+        {
+          value: "",
+          value1: ""
+        },
+        {
+          value: "",
+          value1: ""
+        }
+      ]
+    };
+  },
+  mounted() {
+    this.initTime();
+  },
+>>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
   methods: {
     initTime() {
       let date = new Date();
@@ -189,6 +297,7 @@ export default {
         new Date(new Date().toLocaleDateString()).getTime()
       );
       this.startTime = mytime;
+<<<<<<< HEAD
     },
     changePage(page) {
       this.$store
@@ -249,10 +358,16 @@ export default {
     },
     changeDevice(type) {
       this.deviceId = type;
+=======
+>>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
     }
   },
   components: {
     HandleWarn
+<<<<<<< HEAD
   } 
+=======
+  }
+>>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
 };
 </script>

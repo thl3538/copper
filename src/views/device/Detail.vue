@@ -111,7 +111,7 @@ export default {
           .map(e => {
             return {
               时间: new Date(e.createTime).toLocaleString(),
-              电表电能: e.electricEnergy
+              电表电能: e.weight
             };
           })
       };

@@ -31,7 +31,7 @@
             placeholder="选择结束时间"
             :style="{width: '200px', marginRight: '20px'}"
           ></Date-picker>
-          <i-button type="primary" @click="searchCopper" icon="ios-search">搜索</i-button>
+          <Button type="primary" @click="searchCopper">搜索</Button>
         </Col>
       </Row>
       <Table :columns="columns" :data="copper" :height="autoHeight"></Table>
@@ -54,7 +54,7 @@ export default {
   name: "partcopper",
   data() {
     return {
-      deviceId: "",
+      deviceId: "1009",
       page: 0,
       total: 0,
       startTime: "",

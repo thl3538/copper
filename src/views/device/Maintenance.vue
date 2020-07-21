@@ -135,7 +135,7 @@ export default {
       return this.$store.state.maintenance.maintenance;
     },
     ...mapState({
-      autoHeight: state => state.pageHeight - 320
+      autoHeight: state => state.pageHeight - 300
     }),
     size() {
       return this.$store.state.maintenance.pageSize;
@@ -158,7 +158,11 @@ export default {
       this.$router.push("maintenanceDetail");
     },
     ok() {
-      this.$store.dispatch("maintenance/addMaintenance",this.formItem);
+      this.$store.dispatch("maintenance/addMaintenance",this.formItem)
+        .then(res => {
+          this.$Message.success(res);
+          this.$store.dispatch("maintenance/getMaintenance", this.page);
+        })
       this.formItem = {};
     },
     cancel() {

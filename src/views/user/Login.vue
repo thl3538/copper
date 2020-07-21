@@ -66,12 +66,6 @@ export default {
             message: "长度在4~10位之间",
             trigger: "blur"
           }
-        ],
-        identity: [
-          {
-            required: true,
-            message: "请选择身份"
-          }
         ]
       }
     };
@@ -86,11 +80,7 @@ export default {
           this.$store
             .dispatch("user/handleLogin", this.formCustom)
             .then(res => {
-<<<<<<< HEAD
               this.$Message.success("登录成功");
-=======
-              this.$Message.success(res);
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
               this.$router.push({ path: "/home" });
             })
             .catch(err => {

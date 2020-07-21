@@ -47,7 +47,6 @@ export default {
                     .get(`/api/maintenance/get?page=${page}&size=${state.pageSize}`)
                     .then(({data}) => {
                         if (data.code === 200) {
-                            console.log(data);
                             commit("getMaintenance", data.data.content);
                             resolve(data.data.totalPages);
                         } else {
@@ -82,13 +81,13 @@ export default {
          * @description: 添加保养信息
          */
         addMaintenance({commit}, formItem) {
+            console.log(123);
             return new Promise((resolve, reject) => {
-                console.log(formItem);
                 axios
                     .post(`/api/maintenance/addLog`, formItem)
                     .then(({data}) => {
                         if (data.code === 200) {
-                            resolve(data.msg);
+                            resolve("保养成功");
                         } else {
                             reject(data.msg);
                         }

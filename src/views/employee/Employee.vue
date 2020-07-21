@@ -36,14 +36,11 @@
         <FormItem label="手机号">
           <Input v-model="formItem.employeePhone"></Input>
         </FormItem>
-<<<<<<< HEAD
         <FormItem label="管理设备">
           <CheckboxGroup v-for="(item,index) in devices" :key="index" v-model="editDevice">
             <Checkbox :label="item.deviceId"></Checkbox>
           </CheckboxGroup>
         </FormItem>
-=======
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
       </Form>
     </Modal>
     <!-- 添加员工信息模态框 -->
@@ -73,14 +70,11 @@
         <FormItem label="手机号">
           <Input v-model="addForm.employeePhone"></Input>
         </FormItem>
-<<<<<<< HEAD
         <FormItem label="管理设备">
           <CheckboxGroup v-for="(item,index) in devices" :key="index" v-model="device">
             <Checkbox :label="item.deviceId"></Checkbox>
           </CheckboxGroup>
         </FormItem>
-=======
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
       </Form>
     </Modal>
   </div>
@@ -97,11 +91,8 @@ export default {
       page: 0,
       modal: false,
       addModal: false,
-<<<<<<< HEAD
       device: [], //添加设备的deviceId
       editDevice: [], //修改设备的deviceId数组
-=======
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
       formItem: {
         employeeCard: "",
         employeeName: "",
@@ -116,11 +107,7 @@ export default {
         employeeSex: "",
         employeePhone: "",
         userName: "",
-<<<<<<< HEAD
         userPwd: "",
-=======
-        userPwd: ""
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
       },
       // 表格表头
       columns: [
@@ -164,13 +151,10 @@ export default {
           key: "employeePhone"
         },
         {
-<<<<<<< HEAD
           title: "管理设备Id",
           key: "bindingDevice"
         },
         {
-=======
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
           title: "操作",
           key: "action",
           width: 200,
@@ -222,23 +206,16 @@ export default {
       list: "employee/ascByTime"
     }),
     ...mapState({
-<<<<<<< HEAD
       autoHeight: state => state.pageHeight - 220
-=======
-      autoHeight: state => state.pageHeight - 160
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
     }),
     size() {
       return this.$store.state.employee.pageSize;
     },
     count() {
       return this.$store.state.employee.totalEmployee;
-<<<<<<< HEAD
     },
     devices() {
       return this.$store.state.device.devices;
-=======
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
     }
   },
   beforeMount() {
@@ -314,12 +291,9 @@ export default {
      * 添加员工信息
      */
     addEmployee() {
-<<<<<<< HEAD
       let arr = this.device;
       let Str = arr.join();
       this.addForm.bindingDevice = Str;
-=======
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
       this.$store
         .dispatch("employee/addEmployee", this.addForm)
         .then(res => {
@@ -341,14 +315,11 @@ export default {
      * 修改员工信息
      */
     updateEmployee() {
-<<<<<<< HEAD
       let arr = this.editDevice;
       let Str = arr.join();
       this.formItem.bindingDevice = Str;
       this.formItem.userName = "";
       this.formItem.userPwd = "";
-=======
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
       this.$store
         .dispatch("employee/updateEmployee", this.formItem)
         .then(res => {

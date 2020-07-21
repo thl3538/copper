@@ -14,12 +14,9 @@ import allEfficiency from './modules/allEfficiency';
 import singleEfficiency from './modules/singleEfficiency';
 import maintenance from './modules/maintenance';
 import maintenanceDet from './modules/maintenanceDet';
-<<<<<<< HEAD
-import warn from './modules/warn'
-import timeCard from './modules/timeCard'
-=======
-
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
+import warn from './modules/warn';
+import timeCard from './modules/timeCard';
+import home from './modules/home';
 
 Vue.use(Vuex);
 
@@ -44,12 +41,9 @@ export default new Vuex.Store({
     allEfficiency,
     singleEfficiency,
     maintenance,
-<<<<<<< HEAD
     maintenanceDet,
     warn,
-    timeCard
-=======
-    maintenanceDet
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
+    timeCard,
+    home
   }
 });

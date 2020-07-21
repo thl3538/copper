@@ -8,21 +8,12 @@
       <td>{{modal.firstRow[1]}}</td>
     </tr>
     <tr>
-<<<<<<< HEAD
       <td>{{modal.secondRow[0]}}</td>
       <td>{{modal.secondRow[1]}}</td>
     </tr>
     <tr>
       <td>{{modal.thirdRow[0]}}</td>
       <td>{{modal.thirdRow[1]}}</td>
-=======
-      <td>{{modal.firstRow[0]}}</td>
-      <td>{{modal.firstRow[1]}}</td>
-    </tr>
-    <tr>
-      <td>{{modal.firstRow[0]}}</td>
-      <td>{{modal.firstRow[1]}}</td>
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
     </tr>
   </table>
 </template>

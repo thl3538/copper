@@ -113,19 +113,13 @@ export default {
      * @param {employee} employee 员工信息
      */
     updateEmployee({ dispatch }, employee) {
-<<<<<<< HEAD
       console.log(employee);
-=======
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
       return new Promise((resolve, reject) => {
         axios
           .put(`/api/employee`, employee)
           .then(({ data }) => {
             if (data.code === 200) {
-<<<<<<< HEAD
               console.log(data);
-=======
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
               dispatch("getAllEmployee", 0);
               resolve(data.msg);
             } else {
@@ -147,10 +141,7 @@ export default {
       return new Promise((resolve,reject) => {
         axios.post("/api/employee",employee)
         .then(({data}) => {
-<<<<<<< HEAD
           console.log(data);
-=======
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
           if(data.code === 200) {
             resolve(data.msg);
           }else{

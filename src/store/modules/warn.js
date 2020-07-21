@@ -1,4 +1,4 @@
-import { resolve } from "core-js/fn/promise";
+import { resolve, reject } from "core-js/fn/promise";
 
 /**
  * 默认页面大小
@@ -24,7 +24,7 @@ export default {
     namespaced: true,
     state: {
         pageSize: getSize(), // 页面大小
-        warn: []
+        warn: [],
     },
     mutations: {
         /**
@@ -101,6 +101,21 @@ export default {
                         reject(err);
                     })
                     
+            })
+        },
+        getHandleData({commit}) {
+            return new Promise((resolve, reject) => {
+                axios.get("/api/log/count")
+                    .then(({data}) => {
+                        if(data.code === 200) {
+                            resolve(data.data);
+                        }else {
+                            reject(data.msg);
+                        }
+                    })
+                    .catch(err => {
+                        reject(err);
+                    })
             })
         }
     }

@@ -100,7 +100,7 @@ export default {
   },
   computed: {
     ...mapState({
-      autoHeight: state => state.pageHeight - 180 + "px"
+      autoHeight: state => state.pageHeight - 140 + "px"
     }),
     devices() {
       return this.$store.state.device.devices;

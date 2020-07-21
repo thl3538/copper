@@ -37,22 +37,15 @@
         </Row>
       </Col>
     </Row>
-    <Divider>最近7日效率</Divider>
+    <!-- <Divider>最近7日效率</Divider>
     <Row type="flex" justify="space-around" >
-<<<<<<< HEAD
       <Col span="7" style="marginTop: 20px" class="active">
         <ve-pie :data="chartData" :settings="chartSettings"></ve-pie> 
       </Col>
       <Col span="15"  style="marginTop: 20px" class="active">
-=======
-      <Col span="7" style="marginTop: 40px" class="active">
-        <ve-pie :data="chartData" :settings="chartSettings"></ve-pie> 
-      </Col>
-      <Col span="15" style="marginTop: 40px" class="active">
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
           <ve-line :data="chartData" :settings="chartSettings"></ve-line>
       </Col>
-    </Row>
+    </Row> -->
   </div>
 </template>
 
@@ -112,9 +105,6 @@ export default {
 }
 .active{
   box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;
-<<<<<<< HEAD
   border-radius: 5px;
-=======
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
 }
 </style>>

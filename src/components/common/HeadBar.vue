@@ -29,11 +29,7 @@
         <span :style="{fontWeight: 'bold'}">{{ username }}</span>
       </Tooltip>
       <Tooltip content="身份" placement="bottom">
-<<<<<<< HEAD
         <span :style="{color: '#2d8cf0', fontWeight: 'bold'}">{{identity === "USER" ? "管理员" : "员工"}}</span>
-=======
-        <span :style="{color: '#2d8cf0', fontWeight: 'bold'}">管理员</span>
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
       </Tooltip>
     </span>
   </div>
@@ -73,12 +69,9 @@ export default {
     },
     tags() {
       return this.$store.state.breadcrumb.tags;
-<<<<<<< HEAD
     },
     identity() {
       return this.$store.state.user.identity;
-=======
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
     }
   }
 };
@@ -87,7 +80,8 @@ export default {
 <style scoped>
 #header {
   box-sizing: border-box;
-  background: #fff;
+  background: #515A6E;
+  color: #fff;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
@@ -105,6 +99,10 @@ export default {
   width: 100%;
   padding: 0px 20px;
   text-align: left;
+  color: #fff;
+}
+.ivu-breadcrumb>span:last-child {
+  color: #fff;
 }
 #btn-right {
   display: inline-block;

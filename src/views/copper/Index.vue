@@ -5,21 +5,20 @@
         <Icon size="60" type="ios-person-outline" />
       </div>
       <div class="middle">
-        <p class="name">张三</p>
+        <p class="name">{{ userName }}</p>
         <p class="info">
-          <span class="mr">所属部门 小拉机管理员</span>
-          <span class="mr">员工卡号 1001</span>
-          <span>管理设备 小拉机#77</span>
+          <span class="mr">{{ enterpriseName }}</span>
+          <span>联系方式 {{ userPhone }}</span>
         </p>
       </div>
       <div class="right">
-        <Button type="primary">打卡</Button>
+        <Button @click="clock" type="primary">打卡</Button>
       </div>
     </div>
     <Row>
       <Col span="18">
         <Row>
-          <Col span="7">
+          <Col span="6">
             <div class="box1 active">
               <div class="card">
                 <div>
@@ -27,12 +26,12 @@
                 </div>
                 <div class="params">
                   <p class="mb">设备总数</p>
-                  <p>4台</p>
+                  <p>{{ devices }}</p>
                 </div>
               </div>
             </div>
           </Col>
-          <Col span="7">
+          <Col span="6">
             <div class="box2 active">
               <div class="card">
                 <div>
@@ -40,29 +39,17 @@
                 </div>
                 <div class="params">
                   <p class="mb">员工总数</p>
-                  <p>5人</p>
-                </div>
-              </div>
-            </div>
-          </Col>
-          <Col span="7">
-            <div class="box3 active">
-              <div class="card">
-                <div>
-                  <Icon type="ios-paper-plane-outline" size="100" />
-                </div>
-                <div class="params">
-                  <p class="mb">当前状态</p>
-                  <p>上班</p>
+                  <p>{{ employees }}</p>
                 </div>
               </div>
             </div>
           </Col>
         </Row>
-        <Row :style="{marginTop: '40px', marginRight: '20px'}">
+        <Row :style="{ marginTop: '40px', marginRight: '20px' }">
           <Col>
             <Card>
-                <ve-line :data="chartData"></ve-line>
+              <Divider>关于产量</Divider>
+              <ve-line :data="employeeLog"></ve-line>
             </Card>
           </Col>
         </Row>
@@ -71,63 +58,101 @@
         <Card>
           <p slot="title">最新消息</p>
           <Timeline>
-            <TimelineItem>
-              <p class="time">1976年</p>
-              <p class="content">Apple I 问世</p>
-            </TimelineItem>
-            <TimelineItem>
-              <p class="time">1984年</p>
-              <p class="content">发布 Macintosh</p>
-            </TimelineItem>
-            <TimelineItem>
-              <p class="time">2007年</p>
-              <p class="content">发布 iPhone</p>
-            </TimelineItem>
-            <TimelineItem>
-              <p class="time">2010年</p>
-              <p class="content">发布 iPad</p>
-            </TimelineItem>
-            <TimelineItem>
-              <p class="time">2011年10月5日</p>
-              <p class="content">史蒂夫·乔布斯去世</p>
-            </TimelineItem>
-            <TimelineItem>
-              <p class="time">2011年10月5日</p>
-              <p class="content">史蒂夫·乔布斯去世</p>
-            </TimelineItem>
-            <TimelineItem>
-              <p class="time">2011年10月5日</p>
-              <p class="content">史蒂夫·乔布斯去世</p>
-            </TimelineItem>
-            <TimelineItem>
-              <p class="time">2011年10月5日</p>
-              <p class="content">史蒂夫·乔布斯去世</p>
+            <TimelineItem v-for="(item, index) in warn" :key="index">
+              <p class="time">{{ item.createTime }}</p>
+              <p class="content">{{ item.logInfo }}</p>
             </TimelineItem>
           </Timeline>
         </Card>
+        <div
+          :style="{ marginTop: '30px', fontSize: '24px', fontWeight: 'bold' }"
+        >
+          <Card>
+            <p slot="title">环境状态</p>
+            <p>
+              当前温度:
+              <span :style="{ marginLeft: '10px' }">32度</span>
+            </p>
+            <p>
+              当前湿度:
+              <span :style="{ marginLeft: '10px' }">56%</span>
+            </p>
+          </Card>
+        </div>
       </Col>
     </Row>
   </div>
 </template>
 
 <script>
+import "v-charts/lib/style.css";
 export default {
   name: "index",
   data() {
     return {
-      chartData: {
-        columns: ["日期", "成本", "利润"],
-        rows: [
-          { 日期: "1月1日", 成本: 15, 利润: 12 },
-          { 日期: "1月2日", 成本: 12, 利润: 25 },
-          { 日期: "1月3日", 成本: 21, 利润: 10 },
-          { 日期: "1月4日", 成本: 41, 利润: 32 },
-          { 日期: "1月5日", 成本: 31, 利润: 30 },
-          { 日期: "1月6日", 成本: 71, 利润: 55 }
-        ]
-      }
+      dataEmpty: true,
     };
-  }
+  },
+  computed: {
+    employees() {
+      return this.$store.state.employee.totalEmployee;
+    },
+    devices() {
+      return this.$store.state.device.totalDevice;
+    },
+    status() {
+      return this.$store.state.home.status;
+    },
+    userName() {
+      return this.$store.state.user.userInfo.userName;
+    },
+    enterpriseName() {
+      return this.$store.state.user.userInfo.enterpriseName;
+    },
+    userPhone() {
+      return this.$store.state.user.userInfo.userPhone;
+    },
+    employeeLog() {
+      let lis = this.$store.state.home.employeeLog;
+      return {
+        columns: ["时间", "产量"],
+        rows: lis.map((e) => {
+          return {
+            时间: new Date(e.createTime).toLocaleString(),
+            产量: e.weight,
+          };
+        }),
+      };
+    },
+    warn() {
+      return this.$store.state.home.warning;
+    },
+  },
+  beforeCreate() {
+    this.$store.dispatch("user/getUserInfo").catch((err) => {
+      console.log(err);
+    });
+  },
+  mounted() {
+    this.$store.dispatch("user/getUserInfo").then(() => {
+      let userId = this.$store.state.user.userInfo.userId;
+      this.$store.dispatch("home/attendence", userId);
+    });
+    this.$store.dispatch("home/warning");
+  },
+  methods: {
+    clock() {
+      this.$store
+        .dispatch("home/clock")
+        .then((res) => {
+          console.log(res);
+          this.$Message.success(res);
+        })
+        .catch((err) => {
+          this.$Message.warning(err);
+        });
+    },
+  },
 };
 </script>
 
@@ -176,6 +201,7 @@ export default {
 }
 .box2 {
   display: flex;
+  justify-content: space-around;
   align-items: center;
   flex-direction: column;
   background: #54caf0;
@@ -190,10 +216,10 @@ export default {
 }
 .card {
   display: flex;
-  width: 400px;
   height: 200px;
   padding: 20px 40px;
   align-items: center;
+  justify-content: space-between;
 }
 .params {
   flex: 1;

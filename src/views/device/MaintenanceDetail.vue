@@ -104,9 +104,6 @@ export default {
   font-weight: 600;
   align-items: center;
   color: #023e9a;
-<<<<<<< HEAD
   cursor: pointer;
-=======
->>>>>>> c9fed1eff3963a469a8a98f4fb6a8e456b038db4
 }
 </style>

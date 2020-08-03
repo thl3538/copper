@@ -27,15 +27,15 @@ export default {
 
 <style scoped>
 .circle{
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .out_circle{
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,14 +43,14 @@ export default {
     background: #2DB7F5;
 }
 .side_circle{
-    width: 120px;
-    height: 120px;
+    width: 85px;
+    height: 85px;
     border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     background: #fff;
-    font-size: 18px;
+    font-size: 14px;
     color: #657180;
 }
 </style>

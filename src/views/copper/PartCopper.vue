@@ -2,8 +2,8 @@
   <div>
     <Divider>单台设备数据</Divider>
     <div class="option">
-      <Row>
-        <Col span="14">
+      <div style="display: flex; justifyContent: space-between">
+        <div>
           <i-select
             v-model="deviceId"
             :style="{width: '200px', marginBottom: '10px '}"
@@ -15,8 +15,8 @@
               :value="item.deviceId"
             >{{ item.deviceName }}</i-option>
           </i-select>
-        </Col>
-        <Col span="10">
+        </div>
+        <div>
           <Date-picker
             type="datetime"
             v-model="startTime"
@@ -32,8 +32,8 @@
             :style="{width: '200px', marginRight: '20px'}"
           ></Date-picker>
           <Button type="primary" @click="searchCopper">搜索</Button>
-        </Col>
-      </Row>
+        </div>
+      </div>
       <Table :columns="columns" :data="copper" :height="autoHeight"></Table>
     </div>
     <Page
@@ -191,7 +191,7 @@ export default {
       this.$store
         .dispatch("partCopper/getDeviceCopper", this.page)
         .then(res => {
-          console.log(res);
+          this.$Message.success(res);
         })
         .catch(err => {
           console.log(err);

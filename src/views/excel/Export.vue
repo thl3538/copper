@@ -25,6 +25,29 @@
         <h3>设备数据</h3>
       </div>
     </Card>
+    <Divider>Excel员工考勤数据</Divider>
+    <div style="display: flex">
+      <span style="marginRight: 20px">员工卡号</span>
+      <i-select
+        v-model="employeeCard"
+        :style="{ width: '200px', marginBottom: '10px', marginRight: '20px' }"
+        @on-change="changeEmployee"
+      >
+        <i-option
+          v-for="item in employees"
+          :key="item.employeeCard"
+          :value="item.employeeCard"
+        >{{ item.employeeCard }}</i-option>
+      </i-select>
+      <Date-picker type="datetime" v-model="startTime" format="yyyy-MM-dd HH:mm" placeholder="选择开始时间" :style="{width: '200px', marginRight: '20px'}"></Date-picker>
+      <Date-picker type="datetime" v-model="endTime" format="yyyy-MM-dd HH:mm" placeholder="选择结束时间" :style="{width: '200px', marginRight: '20px'}"></Date-picker>
+    </div>
+    <Card class="checkCard">
+      <div @click="employeeExcel">
+        <Icon type="md-folder" size="100" />
+        <h3>考勤数据</h3>
+      </div>
+    </Card>
     <Divider>Excel导入</Divider>
     <!-- 上传数据组件 -->
     <Upload
@@ -52,8 +75,12 @@ export default {
     return {
       upload: `${conf.serverUrl}/api/excel/upload/employee`,
       content: "",
+      page: 0,
       modal: false,
-      src: ""
+      src: "",
+      employeeCard: "",
+      startTime: "",
+      endTime: ""
     };
   },
   computed: {
@@ -64,7 +91,19 @@ export default {
       return {
         token: this.$store.state.user.token
       };
+    },
+    employees() {
+      return this.$store.state.employee.employees;
     }
+  },
+  created() {
+    this.$store.dispatch("employee/getAllEmployee", this.page).then(() => {
+      let arr = this.$store.state.employee.employees;
+      let employee = arr[0];
+      let employeeCard = employee.employeeCard;
+      this.employeeCard = employeeCard;
+    });
+    this.initTime();
   },
   methods: {
     /**
@@ -114,6 +153,31 @@ export default {
           URL.revokeObjectURL(url);
         });
     },
+    employeeExcel() {
+      let startTime = this.startTime.getTime();
+      let endTime = this.endTime.getTime();
+      this.$axios
+        .get(`/api/excel/download/employeeLog?employeeCard=${this.employeeCard}&start=${startTime}&end=${endTime}`, {
+          responseType: "blob"
+        })
+        .then(res => {
+          // 构造a标签触发click事件进行下载
+          let blob = new Blob([res.data], {
+            type: "application/vnd.ms-excel;charset=utf-8"
+          });
+          let url = URL.createObjectURL(blob);
+          let link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", `employeeExcel.xls`);
+          link.style.display = "none";
+          document.body.appendChild(link);
+          link.click();
+          URL.revokeObjectURL(url);
+        });
+    },
+    changeEmployee(type) {
+      this.employeeCard = type
+    },
     /**
      * 下载成功回调函数
      */
@@ -123,6 +187,13 @@ export default {
       } else {
         this.$Message.error(res.msg);
       }
+    },
+    initTime() {
+      let date = new Date();
+      this.endTime = date;
+      const start = new Date()
+      start.setTime(new Date(new Date().getFullYear(), new Date().getMonth(), 1)) 
+      this.startTime = start;
     }
   }
 };
@@ -138,5 +209,9 @@ export default {
   display: inline-block;
   margin: 10px;
   width: 30%;
+}
+.checkCard {
+  width: 30%;
+  margin: 10px 10px 10px 350px ;
 }
 </style>

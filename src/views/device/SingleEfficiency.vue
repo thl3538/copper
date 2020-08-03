@@ -16,21 +16,21 @@
     </i-select>
     <Row type="flex" justify="space-around">
       <Col span="12" class="active">
-        <ve-line :data="realChartData" :title="title1"></ve-line>
+        <ve-line height="350px" :data="realChartData" :title="title1"></ve-line>
       </Col>
-      <Col span="10">
+      <Col span="10" class="active">
         <Table
           border
           :columns="columns"
           :data="realEff"
-          :style="{ marginTop: '60px', height: '350px' }"
+          :style="{ marginTop: '60px'}"
         />
       </Col>
     </Row>
     <Divider>最近7天效率</Divider>
     <Row class="active box">
       <Col span="21">
-        <ve-line :data="dayEfficiency" :title="title2"></ve-line>
+        <ve-line :data="dayEfficiency" height="320px" :title="title2"></ve-line>
       </Col>
     </Row>
   </div>
@@ -145,9 +145,11 @@ export default {
   display: flex;
 }
 .active {
-  margin: 0 60px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 10px;
   border-radius: 5px;
   background: #fff;
+}
+.box {
+  margin: 0 30px;
 }
 </style>

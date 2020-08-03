@@ -3,7 +3,7 @@
     <div class="changeFrequency">
       <Steps :current="current" :status="status" :style="{ textAlign: 'center' }">
         <Step title="输入设备Id"></Step>
-        <Step title="设置设备每月保养次数"></Step>
+        <Step title="设置设备保养周期"></Step>
         <Step title="设置完成" :content="last"></Step>
       </Steps>
       <Input
@@ -167,9 +167,6 @@ export default {
     },
     cancel() {
       this.formItem = {};
-    },
-    changeInfo(deviceId) {
-      console.log(deviceId);
     },
     /**
      * 创建设备步骤跳转

@@ -42,15 +42,15 @@
         <template slot="title">
           <Icon type="ios-paper-plane" />设备
         </template>
-        <MenuItem name="2-1" to="/home/device">
+        <MenuItem v-if="identity != 'Employee'" name="2-1" to="/home/device">
           <Icon type="md-restaurant" />
           <span>设备信息</span>
         </MenuItem>
-        <MenuItem name="2-2" to="/home/singleefficiency">
+        <MenuItem v-if="identity != 'Employee'" name="2-2" to="/home/singleefficiency">
           <Icon type="md-restaurant" />
           <span>单台效率</span>
         </MenuItem>
-        <MenuItem name="2-3" to="/home/allefficiency">
+        <MenuItem v-if="identity != 'Employee'" name="2-3" to="/home/allefficiency">
           <Icon type="md-restaurant" />
           <span>总体效率</span>
         </MenuItem>
@@ -63,7 +63,7 @@
           <span>设备预警</span>
         </MenuItem>
       </Submenu>
-      <Submenu name="3">
+      <!-- <Submenu name="3" v-if="identity != 'Employee'">
         <template slot="title">
           <Icon type="ios-flame"></Icon>能源
         </template>
@@ -71,8 +71,8 @@
           <Icon type="ios-flame-outline"></Icon>
           <span>能源分析</span>
         </MenuItem>
-      </Submenu>
-      <Submenu name="4">
+      </Submenu> -->
+      <Submenu name="4" v-if="identity != 'Employee'">
         <template slot="title">
           <Icon type="ios-contact" />员工
         </template>
@@ -85,7 +85,7 @@
           <span>员工考勤</span>
         </MenuItem>
       </Submenu>
-      <Submenu name="5">
+      <Submenu name="5" v-if="identity != 'Employee'">
         <template slot="title">
           <Icon type="ios-navigate"></Icon>导出
         </template>
@@ -109,6 +109,9 @@ export default {
     }),
     enterprise() {
       return this.$store.state.user.userInfo.enterpriseName;
+    },
+    identity() {
+      return this.$store.state.user.identity;
     }
   },
   methods: {

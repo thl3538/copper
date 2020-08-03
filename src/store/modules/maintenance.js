@@ -81,7 +81,6 @@ export default {
          * @description: 添加保养信息
          */
         addMaintenance({commit}, formItem) {
-            console.log(123);
             return new Promise((resolve, reject) => {
                 axios
                     .post(`/api/maintenance/addLog`, formItem)

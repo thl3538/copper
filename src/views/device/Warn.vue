@@ -34,7 +34,7 @@
       </Card>
     </div>
     <Row>
-      <Col span="12" :style="{display: 'flex', alignItems: 'center'}">
+      <Col span="24" :style="{display: 'flex', alignItems: 'center'}">
       <Date-picker type="datetime" v-model="startTime" format="yyyy-MM-dd HH:mm" placeholder="选择开始时间" :style="{width: '200px', marginRight: '20px'}"></Date-picker>
       <Date-picker type="datetime" v-model="endTime" format="yyyy-MM-dd HH:mm" placeholder="选择结束时间" :style="{width: '200px', marginRight: '20px'}"></Date-picker>
       <i-select
@@ -161,7 +161,7 @@ export default {
       return this.$store.state.warn.warn;
     },
     ...mapState({
-      autoHeight: state => state.pageHeight - 540
+      autoHeight: state => state.pageHeight - 420
     }),
     size() {
       return this.$store.state.warn.pageSize;

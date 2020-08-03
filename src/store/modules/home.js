@@ -1,21 +1,49 @@
+import { reject, resolve } from "core-js/fn/promise";
+
 export default {
     namespaced: true,
     state: {
         employeeLog: [], //首页存放考勤日志
-        warning: []      //存放首页警告数据
+        warning: [],      //存放首页警告数据
+        maintenance: [], //存放首页保养信息
+        manageLog: [],
+        productData: [], // 存放生产信息
+        deviceOnline: [], //存放设备在线信息
     },
     mutations: {
-        getEmployeeLog(state,data) {
-            console.log(data);
-            data = data.reverse();
-            state.employeeLog = data;
-        },
         getWarning(state, warning) {
+            state.maintenance = [];
+            state.warning = [];
             warning.forEach(item => {
+                item.logInfo = item.deviceName + item.logInfo;
                 item.createTime = new Date(item.createTime).toLocaleString();
             });
-            state.warning = warning;
-        }
+            warning.forEach(item => {
+                if(item.logType == "普通警告"){
+                    state.maintenance.push(item);
+                }else {
+                    state.warning.push(item);
+                }
+            }) 
+        },
+        getOneOutput(state, data) {
+            state.employeeLog = data;
+            data = data.reverse();
+        },
+        getProduct(state, data) {
+            data.weightTotal = data.weightTotal.toFixed(2);
+            state.productData = data;
+        },
+        changeEmployee(state, data) {
+            data.forEach(item => {
+                if(item.deviceStatus == true) {
+                    item.deviceStatus = "在线"
+                }else {
+                    item.deviceStatus = "离线"
+                }
+            })
+            state.deviceOnline = data;
+        } 
     },
     actions: {
         /**
@@ -37,23 +65,24 @@ export default {
             })
         },
         /**
-        * 获取员工最近产量
+        * 管理员可以筛选员工获得最近产量
         */
-        attendence({commit},userId) {
+       getOneOutput({ commit }, employeeCard) {
             return new Promise((resolve, reject) => {
-                axios.get(`/api/employee/getEmployeeLog/${userId}`)
+                axios.get(`/api/employee/getEmployeeLog/${employeeCard}`)
                     .then(({data}) => {
                         if(data.code === 200) {
-                            commit("getEmployeeLog",data.data);
-                        }else {
+                            commit("getOneOutput",data.data);
+                            resolve(data.msg);
+                        } else {
                             reject(data.msg);
                         }
                     })
-                    .catch(err =>  {
-                        reject(error);
+                    .catch(err => {
+                        reject(err);
                     })
             })
-        },
+       },
         /**
         * 获取报警信息
         */
@@ -72,6 +101,41 @@ export default {
                         reject(err);
                     })
             })
-        } 
+        },
+        /**
+        * 获取生产数据
+        */
+       getProduct({commit}) {
+         return new Promise((resolve, reject) => {
+             axios.get("/api/employee/getData")
+                .then(({data}) => {
+                    if(data.code === 200) {
+                        commit("getProduct", data.data);
+                        resolve(data.msg);
+                    }else {
+                        reject(data.msg);
+                    }
+                })
+                .catch(err => {
+                    reject(err);
+                })
+         }) 
+       },
+       /**
+        * 切换员工查看设备在线状态
+        */
+       changeEmployee({ commit }, employeeName) {
+           return new Promise((resolve, reject) => {
+             axios.get(`api/onenet?employeeName=${employeeName}`)
+                .then(({data}) => {
+                    if(data.code === 200) {
+                        commit("changeEmployee", data.data);
+                    }
+                })
+                .catch(err => {
+                    reject(data.msg);
+                })
+           })
+       }
     }
 }

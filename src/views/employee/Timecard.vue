@@ -44,10 +44,17 @@ export default {
           key: "employeeName",
         },
         {
-          title: "打卡时间",
+          title: "上班打卡时间",
           key: "createTime",
           render: (h, par) => {
             return h("div", new Date(par.row.createTime).toLocaleString());
+          },
+        },
+        {
+          title: "下班打卡时间",
+          key: "createTime",
+          render: (h, par) => {
+            return h("div", new Date(par.row.updateTime).toLocaleString());
           },
         },
         {
@@ -59,7 +66,7 @@ export default {
           key: "theoreticalLength",
         },
         {
-          title: "当天生产产量(m/s)",
+          title: "当天生产产量(kg)",
           key: "weight",
         },
       ],

@@ -29,7 +29,7 @@
         <span :style="{fontWeight: 'bold'}">{{ username }}</span>
       </Tooltip>
       <Tooltip content="身份" placement="bottom">
-        <span :style="{color: '#2d8cf0', fontWeight: 'bold'}">{{identity === "USER" ? "管理员" : "员工"}}</span>
+        <span :style="{color: '#2d8cf0', fontWeight: 'bold'}">{{identity !== "Employee" ? "管理员" : "员工"}}</span>
       </Tooltip>
     </span>
   </div>

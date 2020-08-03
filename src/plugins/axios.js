@@ -29,7 +29,6 @@ _axios.interceptors.response.use(
     return response;
   },
   function(error) {
-    console.log("1" + error);
     return Promise.reject(error);
   }
 );

@@ -71,11 +71,14 @@
                 <span>{{item.deviceName}}</span>
               </p>
               <p>
-                <span :class="{offline: item.deviceStatus == '离线'}">{{item.deviceStatus}}</span>
+                <span :class="{offline: item.deviceStatus == '待机'}">{{item.deviceStatus}}</span>
               </p>
              </div>
-             <div class="img">
-               <img src="../../assets/小拉机.jpeg" alt="">
+             <div v-show="item.deviceStatus == '运行'" class="img">
+               <img src="../../assets/run.gif" alt="">
+             </div>
+             <div v-show="item.deviceStatus == '停机'" class="img">
+               <img src="../../assets/stop.png" alt="">
              </div>
             </div>
           </div>

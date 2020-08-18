@@ -36,10 +36,12 @@ export default {
         },
         changeEmployee(state, data) {
             data.forEach(item => {
-                if(item.deviceStatus == true) {
-                    item.deviceStatus = "在线"
-                }else {
-                    item.deviceStatus = "离线"
+                if(item.deviceStatus == 0) {
+                    item.deviceStatus = "停机"
+                }else if(item.deviceStatus == 1){
+                    item.deviceStatus = "待机"
+                }else if(item.deviceStatus == 2) {
+                    item.deviceStatus = "运行"
                 }
             })
             state.deviceOnline = data;

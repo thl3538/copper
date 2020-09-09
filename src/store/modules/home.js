@@ -35,6 +35,7 @@ export default {
             state.productData = data;
         },
         changeEmployee(state, data) {
+            //console.log(data);
             data.forEach(item => {
                 if(item.deviceStatus == 0) {
                     item.deviceStatus = "停机"

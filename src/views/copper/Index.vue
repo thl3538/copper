@@ -70,12 +70,17 @@
                <p>
                 <span>{{item.deviceName}}</span>
               </p>
-              <p>
-                <span :class="{offline: item.deviceStatus == '待机'}">{{item.deviceStatus}}</span>
+              <p class="run-color">
+                <span v-show="item.deviceStatus == '运行'" :style="{color: '#fff'}" >{{item.deviceStatus}}</span>
+                <span v-show="item.deviceStatus == '待机'" :style="{color: 'red'}" >{{item.deviceStatus}}</span>
+                <span v-show="item.deviceStatus == '停机'" :style="{color: 'black'}" >{{item.deviceStatus}}</span>
               </p>
              </div>
              <div v-show="item.deviceStatus == '运行'" class="img">
-               <img src="../../assets/run.gif" alt="">
+               <img src="../../assets/wait.png" alt="">
+             </div>
+             <div v-show="item.deviceStatus == '待机'" class="img">
+               <img src="../../assets/wait.png" alt="">
              </div>
              <div v-show="item.deviceStatus == '停机'" class="img">
                <img src="../../assets/stop.png" alt="">
@@ -459,9 +464,7 @@ export default {
   border-radius: 5px;
   margin: 0 0 0 20px;
 }
-.offline {
- color: red;
-}
+
 .is-online {
   box-shadow: rgba(2, 1, 1, 0.35) 0px 2px 10px;
   border-radius: 5px;
